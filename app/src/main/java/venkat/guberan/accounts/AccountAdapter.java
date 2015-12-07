@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import venkat.guberan.R;
+import venkat.guberan.accounts.model.Account;
 
 /**
  * Created by Venkat on 12/6/15.
@@ -35,7 +34,7 @@ public class AccountAdapter extends ArrayAdapter {
         View v = convertView;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater)parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.content_display_account, null);
+            v = vi.inflate(R.layout.list_item_account, null);
         }
         Account account = accounts.get(position);
         if (account != null) {
@@ -46,10 +45,10 @@ public class AccountAdapter extends ArrayAdapter {
                 desc.setText(account.getDescription());
             }
             if(balance != null){
-                balance.setText(account.getBalance());
+                balance.setText(String.valueOf(account.getBalance().getAmount()));
             }
             if(currency != null) {
-                currency.setText(account.getCurrency());
+                currency.setText(account.getBalance().getCurrency());
             }
         }
         return v;
